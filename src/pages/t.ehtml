@@ -1,0 +1,15 @@
+div.row {
+    div.col {
+        form :submit=submit() {
+            input type=number v-model=zzz :class="[{q: 'zz'}, zz, dd]" {}
+
+            select.tst-z [(*ngModel)] {
+                option v-for="v in options" :value="v.id" {
+                    'title: {{v.title}}'
+                }
+            }
+
+            button.btn.btn-primary { 'Submit' }
+        }
+    }
+}
