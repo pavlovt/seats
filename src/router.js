@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from './pages/home.page.vue'
 import About from './pages/about.page.vue'
 import Login from './pages/login.page.vue'
+import Contact from './pages/contact.page.vue'
 import NotFound from './pages/notfound.page.vue'
 
 import head from './core/head'
@@ -29,6 +30,12 @@ const router = new Router({
       name: 'login',
       meta: {title: 'Login'},
       component: Login
+    },
+    {
+      path: '/contact',
+      name: 'Contact',
+      meta: {title: 'Contact'},
+      component: Contact
     },
     {
       path: '*',

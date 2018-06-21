@@ -3,7 +3,8 @@
     div id=nav {
       router-link  to=/login { 'Login' } ' | ' 
       router-link  to=/ { 'Home' } ' | ' 
-      router-link  to=/about { 'About' }
+      router-link  to=/about { 'About' } ' | '
+      router-link  to=/contact { 'Contact' }
     }
     router-view  {}
   }
