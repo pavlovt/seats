@@ -3,7 +3,8 @@
     div id=nav {
       router-link  to=/login { 'Login' } ' | ' 
       router-link  to=/ { 'Home' } ' | ' 
-      router-link  to=/about { 'About' }
+      router-link  to=/about { 'About' } ' | '
+      router-link  to=/drag { 'Drag' }
     }
     router-view  {}
   }
@@ -12,6 +13,10 @@
 <script>
   import * as jq from 'jquery';
   window.$ = jq
+
+  import 'webpack-jquery-ui';
+  import 'webpack-jquery-ui/css';
+
   import * as _ from 'lodash';
   window._ = _
   import conf from './core/conf'

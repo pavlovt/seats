@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from './pages/home.page.vue'
 import About from './pages/about.page.vue'
 import Login from './pages/login.page.vue'
+import Drag from './pages/drag.vue'
 import NotFound from './pages/notfound.page.vue'
 
 import head from './core/head'
@@ -29,6 +30,12 @@ const router = new Router({
       name: 'login',
       meta: {title: 'Login'},
       component: Login
+    },
+    {
+      path: '/drag',
+      name: 'drag',
+      meta: {title: 'Drag'},
+      component: Drag
     },
     {
       path: '*',
