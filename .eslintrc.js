@@ -5,7 +5,8 @@ module.exports = {
     'eslint:recommended'
   ],
   "rules": {
-  	'no-unused-vars': 0,
+    'no-unused-vars': 0,
+    'no-console': 0
   },
   "globals": {
     "$": true,
