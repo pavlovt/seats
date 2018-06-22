@@ -32,8 +32,8 @@
             /*stop:function(ev, ui) {
               var pos=$(ui.helper).offset();
               let objName = "#clonediv"+counter
-              $(objName).css({"left":pos.left,"top":pos.top});
-              $(objName).removeClass("drag");
+              // $(objName).css({"left":pos.left,"top":pos.top});
+              // $(objName).removeClass("drag");
 
 
                 //When an existiung object is dragged
@@ -55,11 +55,21 @@
               counter++;
               var element=$(ui.draggable).clone();
               element.addClass("tempclass");
+              element.removeClass("drag");
               console.log(ui.helper.attr('style'))
               element.attr('style', ui.helper.attr('style'))
               $(this).append(element);
               $(".tempclass").attr("id","clonediv"+counter);
               $("#clonediv"+counter).removeClass("tempclass");
+              $(element).draggable({
+                  containment: 'parent',
+                    stop:function(ev, ui) {
+                      var pos=$(ui.helper).offset();
+                      console.log($(this).attr("id"));
+                      console.log(pos.left)
+                      console.log(pos.top)
+                    }
+                });
 ui.helper.remove()
               //Get the dynamically item id
               // draggedNumber = ui.helper.attr('id').search(/drag([0-9])/)
