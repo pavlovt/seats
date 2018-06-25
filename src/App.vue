@@ -12,11 +12,11 @@
 </template>
 
 <script>
-  import * as jq from 'jquery';
+  /*import * as jq from 'jquery';
   window.$ = jq
 
   import 'webpack-jquery-ui';
-  import 'webpack-jquery-ui/css';
+  import 'webpack-jquery-ui/css';*/
 
   import * as _ from 'lodash';
   window._ = _
