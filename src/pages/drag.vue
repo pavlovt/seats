@@ -29,7 +29,7 @@
         $(".drag").draggable({
             helper:'clone',
             containment: 'frame',
-
+            grid: [ 20, 20 ],
             //When first dragged
             /*stop:function(ev, ui) {
               var pos=$(ui.helper).offset();
