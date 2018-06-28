@@ -1,4 +1,5 @@
-import * as form from '../el/form'
+import * as form from '../parts/form'
+import store from '../store/index.store'
 
 export default {
   install(Vue, options) {
@@ -7,13 +8,10 @@ export default {
     Vue.mixin({
       created() {
         // add the store to each component
-        this.s = window.s
+        this.s = store
       },
       methods: {
-        // run this action for the selected store
-        act(action) {
-          return this.$store.dispatch('posts/get')
-        }
+        
       }
     })
 

@@ -1,5 +1,9 @@
 {
   "presets": [
-    "@vue/app"
-  ]
+    "@vue/app",
+    ["@babel/preset-stage-2", { "loose": true, "decoratorsLegacy": true }]
+  ],
+  "plugins": [
+    "@babel/plugin-transform-runtime"
+  ],  
 }

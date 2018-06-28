@@ -53,7 +53,7 @@ class Api {
   }
 
   url(url) {
-    return 'http://127.0.0.1:3333' + url;
+    return conf.server.url + url;
   }
 
   get(url, query, headers, options) {

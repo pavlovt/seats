@@ -1,19 +1,7 @@
-const state = {
+import {observable, action} from 'mobx'
 
+class Model {
+    
 }
 
-const actions = {
-	login(username, password) {
-		return api.get('/login', {username, password})
-	}
-}
-
-const getters = {
-	
-}
-
-const mutations = {
-	
-}
-
-export default {namespaced: true, state, actions, getters, mutations};
+export default new Model()

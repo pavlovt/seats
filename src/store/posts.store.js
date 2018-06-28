@@ -1,20 +1,19 @@
+import {observable, action} from 'mobx'
 
-const state = {
-  posts: [1,2,3]
+class Model {
+    @observable
+    posts = []
+
+    @action.bound
+    get() {
+      return api.get('posts')
+      .then(res => this.posts = res)
+    }
+
+    @action.bound
+    filter(title) {
+      return !title? this.posts : this.posts.filter(v => v.title.indexOf(title) > -1)
+    }
 }
 
-const actions = {
-	get() {
-    return 'zzz'
-  }
-}
-
-const getters = {
-	data: _ => state.posts
-}
-
-const mutations = {
-	
-}
-
-export default {namespaced: true, state, actions, getters, mutations};
+export default new Model()

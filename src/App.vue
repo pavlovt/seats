@@ -26,6 +26,10 @@
   window.msg = msg
   import api from './core/api'
   window.api = api
+  import alertify from 'alertifyjs'
+  window.alertify = alertify
+  import store from './store/index.store'
+  window.store = store
 
   // init html head
   import head from './core/head'

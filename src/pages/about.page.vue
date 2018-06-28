@@ -1,36 +1,39 @@
 <template>
   <div class="about">
-    <h1>Drag test</h1>
-
-  <ul>
-    <li id="draggable" class="ui-state-highlight">Drag me down</li>
-  </ul>
-   
-  <ul id="sortable">
-    <li class="ui-state-default">Item 1</li>
-    <li class="ui-state-default">Item 2</li>
-    <li class="ui-state-default">Item 3</li>
-    <li class="ui-state-default">Item 4</li>
-    <li class="ui-state-default">Item 5</li>
-  </ul>
+    <h2>Posts</h2>
+    <xinput name=title label=Filter v-model=title />
+    <ul>
+      <li v-for="post in filter(title)" @click=show(post) :key=post.id>{{post.title}}</li>
+    </ul>
   </div>
 </template>
 <script>
+   
   export default {
     name: 'about',
     title: 'About',
     path: '/about',
 
+    data() {
+      return {
+        title: null
+      }
+    },
+
     mounted() {
-      $( "#sortable" ).sortable({
-        revert: true
-      });
-      $( "#draggable" ).draggable({
-        connectToSortable: "#sortable",
-        helper: "clone",
-        revert: "invalid"
-      });
-      $( "ul, li" ).disableSelection();
+      // this.act('posts/get')
+      // .then(res => this.posts = res)
+      this.get();
+    },
+
+    methods: {
+      show(post) {
+        msg.info(`id: ${post.id}; body: ${post.body}`)
+      }
+    },
+
+    fromMobx: {
+      post: store.post
     }
   }
 </script>
