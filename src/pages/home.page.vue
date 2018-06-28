@@ -1,9 +1,10 @@
 <template lang="ehtml">
   .row {
       .col {
+          img src=/img/logo.png {}
           form @submit.prevent=submit {
               input v-model="frm.z" {}
-
+              br {}
               button.btn.btn-primary { 'Submit' }
           }
       }
