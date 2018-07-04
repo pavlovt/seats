@@ -105,6 +105,7 @@ export default {
 
 .draggable {
   float: left;
+  z-index: 10;
 }
 
 #dropzone {
