@@ -14,8 +14,6 @@
 </template>
 
 <script>
-  import { sync } from 'vuex-pathify'
-
   const data = () => ({
     frm: { username: '', password: ''},
   })
