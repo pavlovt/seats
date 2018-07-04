@@ -17,17 +17,13 @@ import { observer } from "mobx-vue"
 import SeatsStore from '../store/seats.store'
 
 export default observer({
-  name: "drag",
-  title: "drag",
-  path: "/drag",
+  name: "seats",
+  title: "seats",
+  path: "/seats",
 
   data: () => ({
     state: new SeatsStore()
   }),
-
-  methods: {
-
-  },
 
   mounted() {
     $(".draggable").draggable({

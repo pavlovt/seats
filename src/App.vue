@@ -4,7 +4,7 @@
       router-link  to=/login { 'Login' } ' | ' 
       router-link  to=/ { 'Home' } ' | ' 
       router-link  to=/about { 'About' } ' | '
-      router-link  to=/drag { 'Drag' }  ' | '
+      router-link  to=/seats { 'Seats' }  ' | '
       router-link  to=/contact { 'Contact' }
     }
     router-view  {}

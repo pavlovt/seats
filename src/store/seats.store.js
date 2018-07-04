@@ -7,9 +7,9 @@ const seatImageWidth = 50
 class SeatsStore {
     @observable
     seats = [
-      'position: absolute; left: 270px; top: 180px; z-index: 10; transform: rotate(-5.4367rad);',
+      'position: absolute; left: 270px; top: 280px; z-index: 10; transform: rotate(-5.4367rad);',
       'position: absolute; left: 350px; top: 140px; z-index: 10;',
-      'position: absolute; left: 150px; top: 140px; z-index: 10;'
+      'position: absolute; left: 250px; top: 140px; z-index: 10;'
     ]
 
     @computed

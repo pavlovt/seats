@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import Home from './pages/home.page.vue'
 import About from './pages/about.page.vue'
 import Login from './pages/login.page.vue'
-import Drag from './pages/drag.vue'
+import Seats from './pages/seats.vue'
 import Contact from './pages/contact.page.vue'
 import NotFound from './pages/notfound.page.vue'
 
@@ -33,10 +33,10 @@ const router = new Router({
       component: Login
     },
     {
-      path: '/drag',
-      name: 'drag',
-      meta: {title: 'Drag'},
-      component: Drag
+      path: '/seats',
+      name: 'seats',
+      meta: {title: 'Seats'},
+      component: Seats
     },
     {
       path: '/contact',
