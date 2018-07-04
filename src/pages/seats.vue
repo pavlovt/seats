@@ -44,7 +44,7 @@ export default observer({
     $("#dropzone").droppable({
       drop: function(event, ui) {
         var canvas = $(this);
-        // if (!ui.draggable.hasClass("object")) {
+        if (!ui.draggable.hasClass("object")) {
           var canvasElement = ui.helper.clone();
           canvasElement.addClass("object");
           canvas.find("div").removeClass("activeElement");
@@ -77,7 +77,7 @@ export default observer({
             containment: "#dropzone"
           }).rotatable({snap: 2});
         }
-      // }
+      }
     });
 
     $(document).on("mousedown", ".ui-rotatable-handle", function(e) {
