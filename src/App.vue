@@ -30,6 +30,8 @@
   window.alertify = alertify
   import store from './store/index.store'
   window.store = store
+  import domUtils from './core/dom-utils'
+  window.domUtils = domUtils
 
   // init html head
   import head from './core/head'

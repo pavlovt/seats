@@ -14,14 +14,9 @@ class SeatsStore {
 
     @computed
     get workPlaces() {
-      return this.seats.map(seat => {
-        const image = document.createElement('img')
-        image.src = seatImageUrl
-        image.width = seatImageWidth
-        
-        const seatContainer = document.createElement('div')
-        seatContainer.classList = workPlaceElementClasses
-        seatContainer.style = seat
+      return this.seats.map(seatStyles => {
+        const image = domUtils.createElement('img', { src: seatImageUrl, width: seatImageWidth })
+        const seatContainer = domUtils.createElement('div', { classList: workPlaceElementClasses, style: seatStyles })
 
         seatContainer.appendChild(image)
 
