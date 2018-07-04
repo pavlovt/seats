@@ -31,7 +31,7 @@
     methods: {
       draw() {
         var poly = new SVG('rooms').size('100%', '100%')
-            .polygon().draw();
+            .polygon().draw({snapToGrid:10});
             
         poly.on('drawstart', function(e) {
             document.addEventListener('keydown', function(e) {
