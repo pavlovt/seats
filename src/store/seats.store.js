@@ -1,6 +1,6 @@
 import {observable, action, computed, autorun} from 'mobx'
 
-const workPlaceElementClasses = 'object activeElement ui-draggable ui-draggable-handle'
+const workPlaceElementClasses = 'object activeElement ui-draggable ui-draggable-handle editable-seat'
 const seatImageUrl = 'https://svgshare.com/i/7BU.svg'
 const seatImageWidth = 50
 
@@ -14,7 +14,7 @@ class SeatsStore {
 
     @computed
     get workPlaces() {
-      const seats = this.seats.map(seat => {
+      return this.seats.map(seat => {
         const image = document.createElement('img')
         image.src = seatImageUrl
         image.width = seatImageWidth
@@ -27,8 +27,6 @@ class SeatsStore {
 
         return seatContainer
       });
-
-      return seats
     }
 }
 

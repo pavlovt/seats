@@ -2,7 +2,7 @@
   <div id="content">
     <div id="element">
       <div class="draggable">
-        <img id="drag1" src="https://svgshare.com/i/7BU.svg" alt="" width="50px">
+        <img id="drag1" src="https://svgshare.com/i/7BU.svg" alt="" width="50px" />
       </div>
     </div>
     <div
@@ -26,6 +26,15 @@ export default observer({
   }),
 
   mounted() {
+    $('#dropzone').append(this.state.workPlaces)
+
+    $('.ui-draggable').each((idx, el) => {
+      $(el).draggable({
+        cursor: "move",
+        grid: [20, 20]
+      })
+    })
+
     $(".draggable").draggable({
       helper: "clone",
       cursor: "move",
@@ -35,7 +44,7 @@ export default observer({
     $("#dropzone").droppable({
       drop: function(event, ui) {
         var canvas = $(this);
-        if (!ui.draggable.hasClass("object")) {
+        // if (!ui.draggable.hasClass("object")) {
           var canvasElement = ui.helper.clone();
           canvasElement.addClass("object");
           canvas.find("div").removeClass("activeElement");
@@ -51,6 +60,11 @@ export default observer({
             top: ui.position.top - off.top
           };
 
+          if (ui.helper.hasClass('editable-seat')) {
+            cElOff.left = ui.position.left
+            cElOff.top = ui.position.top
+          }
+
           canvasElement.css({
             left: cElOff.left,
             top: cElOff.top,
@@ -63,7 +77,7 @@ export default observer({
             containment: "#dropzone"
           }).rotatable({snap: 2});
         }
-      }
+      // }
     });
 
     $(document).on("mousedown", ".ui-rotatable-handle", function(e) {
@@ -80,8 +94,6 @@ export default observer({
       e.preventDefault();
       e.stopPropagation();
     });
-    
-    $('#dropzone').append(this.state.workPlaces)
   }
 });
 </script>
