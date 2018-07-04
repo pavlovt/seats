@@ -13,14 +13,21 @@
   </div>
 </template>
 <script>
-export default {
+import { observer } from "mobx-vue"
+import SeatsStore from '../store/seats.store'
+
+export default observer({
   name: "drag",
   title: "drag",
   path: "/drag",
 
   data: () => ({
-    // floor: f6
+    state: new SeatsStore()
   }),
+
+  methods: {
+
+  },
 
   mounted() {
     $(".draggable").draggable({
@@ -77,8 +84,10 @@ export default {
       e.preventDefault();
       e.stopPropagation();
     });
+    
+    $('#dropzone').append(this.state.workPlaces)
   }
-};
+});
 </script>
 
 <style>
