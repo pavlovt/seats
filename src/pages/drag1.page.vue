@@ -30,31 +30,20 @@
 
     methods: {
       draw() {
-        var poly1 = new SVG('rooms').size('100%', '100%')
+        var poly = new SVG('rooms').size('100%', '100%')
             .polygon().draw();
-            console.log(poly1)
-        poly1.on('drawstart', function(e) {
+            
+        poly.on('drawstart', function(e) {
             document.addEventListener('keydown', function(e) {
                 if(e.keyCode == 13){
-                    poly1.draw('done');
-                    poly1.off('drawstart');
+                    poly.draw('done');
+                    poly.off('drawstart');
                 }
             });
         });
         
-        poly1.on('drawstop', function() {
-            $(poly1.node).draggable({
-              // snap by grid of 20px
-              grid: [ 20, 20 ],
-              containment: 'parent',
-                stop:function(ev, ui) {
-                  var pos=$(ui.helper).offset();
-                  console.log($(this).attr("id"));
-                  console.log(pos.left)
-                  console.log(pos.top)
-                }
-            // snap by grid of 2 degrees
-            }).rotatable({snap: 2})
+        poly.on('drawstop', function() {
+            $(poly.node).attr({strokeWidth: 1, fill: 'none', stroke: '#000000'})
         });
       }
     },
