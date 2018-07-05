@@ -9,7 +9,9 @@
     id="dropzone"
     class="ui-widget-header"
     style="width: 1000px; height: 493px; float: left; background-image: url('https://cdn.pbrd.co/images/HqV80K4.jpg'); background-repeat: no-repeat; background-size: 100%;"
-    ></div>
+    >
+      <seat v-for="seat in state.seats" v-bind:key="seat.id" v-bind:position="seat.position"></seat>
+    </div>
   </div>
 </template>
 <script>
@@ -26,12 +28,12 @@ export default observer({
   }),
 
   mounted() {
-    $('#dropzone').append(this.state.workPlaces)
-
-    $('.ui-draggable').each((idx, el) => {
-      $(el).draggable({
-        cursor: "move",
-        grid: [20, 20]
+    this.$nextTick(function attachDraggableHandles() {
+      $('.ui-draggable').each((idx, el) => {
+        $(el).draggable({
+          cursor: "move",
+          grid: [20, 20]
+        })
       })
     })
 

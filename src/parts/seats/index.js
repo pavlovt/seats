@@ -1,0 +1,1 @@
+export {default as seat} from './seat.vue'

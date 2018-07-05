@@ -1,4 +1,5 @@
 import * as form from '../parts/form'
+import * as seats from '../parts/seats'
 import store from '../store/index.store'
 
 export default {
@@ -16,10 +17,10 @@ export default {
     })
 
     // register all form components
-    _(form).forIn((val, key) => {
-      Vue.component(key, val)
-    })
-    // ({...form}).keys().forEach(key => Vue.component(key, form[key]))
+    _(form).forIn((val, key) => Vue.component(key, val))
+
+    // register all seats components
+    _(seats).forIn((val, key) => Vue.component(key, val))
 
     Vue.filter('capitalize', function (value) {
       if (!value) return ''
