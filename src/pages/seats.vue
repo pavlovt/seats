@@ -2,14 +2,10 @@
   <div id="content">
     <div id="element">
       <div class="draggable">
-        <img id="drag1" src="https://svgshare.com/i/7BU.svg" alt="" width="50px" />
+        <img id="drag1" src="https://svgshare.com/i/7BU.svg" alt="seat" width="50px" />
       </div>
     </div>
-    <div
-    id="dropzone"
-    class="ui-widget-header"
-    style="width: 1000px; height: 493px; float: left; background-image: url('https://cdn.pbrd.co/images/HqV80K4.jpg'); background-repeat: no-repeat; background-size: 100%;"
-    >
+    <div id="dropzone" class="ui-widget-header floor-map">
       <seat v-for="seat in state.seats" v-bind:key="seat.id" v-bind:position="seat.position"></seat>
     </div>
   </div>
@@ -29,11 +25,11 @@ export default observer({
 
   mounted() {
     this.$nextTick(function attachDraggableHandles() {
-      $('.ui-draggable').each((idx, el) => {
+      $('.object.ui-draggable').each((idx, el) => {
         $(el).draggable({
           cursor: "move",
           grid: [20, 20]
-        })
+        }).rotatable({snap: 2});
       })
     })
 
@@ -128,11 +124,17 @@ export default observer({
 }
 
 #dropzone {
-  width: 200px;
-  height: 200px;
   padding: 0.5em;
   float: left;
   margin: 10px;
   position: relative;
+}
+.floor-map {
+  width: 1000px;
+  height: 493px;
+  float: left;
+  background-image: url('https://cdn.pbrd.co/images/HqV80K4.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 </style>
