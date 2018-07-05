@@ -5,6 +5,7 @@
       router-link  to=/ { 'Home' } ' | ' 
       router-link  to=/about { 'About' } ' | '
       router-link  to=/seats-admin { 'Seats Admin' }  ' | '
+      router-link  to=/drag1 { 'Draw' }  ' | '
       router-link  to=/contact { 'Contact' }
     }
     router-view  {}
@@ -36,8 +37,6 @@
   // init html head
   import head from './core/head'
   head.init(conf.head)
-
-  import { sync } from 'vuex-pathify'
 
   export default {
     name: 'app',

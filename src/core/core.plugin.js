@@ -4,8 +4,7 @@ import store from '../store/index.store'
 
 export default {
   install(Vue, options) {
-    // Vue.component(MyComponent.name, MyComponent)
-    // Vue.directive(MyDirective.name, MyDirective)
+    // register methods and hooks in all app components
     Vue.mixin({
       created() {
         // add the store to each component
