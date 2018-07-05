@@ -1,6 +1,7 @@
 <template>
   <div id="content">
-    <drag-drop-floor-map v-bind:seats="state.seats"></drag-drop-floor-map>
+    <drag-drop-floor-map v-bind:seats="state.seats" :onSelectSeat="onSelectSeat"></drag-drop-floor-map>
+
   </div>
 </template>
 <script>
@@ -16,18 +17,10 @@ export default observer({
     state: new SeatsStore()
   }),
 
-  mounted() {
-    $(".selectable-seat")
-      .bind("mousedown", function(e) {
-        e.metaKey = true;
-      })
-      .selectable({ autoRefresh: true });
+  methods: {
+    onSelectSeat(seatId) {
+      console.log(seatId)
+    }
   }
 });
 </script>
-<style>
-#dropzone .ui-selected {
-  background: #f39814;
-  color: white;
-}
-</style>

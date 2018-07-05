@@ -1,5 +1,5 @@
 <template>
-  <div class="object activeElement ui-draggable editable-seat selectable-seat" :style="position">
+  <div class="object activeElement ui-draggable editable-seat selectable-seat" :style="position" v-on:click="onSelectSeat(seatId)">
     <img src="https://svgshare.com/i/7BU.svg" width="50">
     <div class="ui-rotatable-handle ui-draggable"></div>
   </div>
@@ -8,19 +8,15 @@
 export default {
   name: 'seat',
   props: {
-    position: String
+    position: String,
+    seatId: Number,
+    onSelectSeat: Function
   }
 }
 </script>
-<style>
-.ui-rotatable-handle {
-  background: url("https://cdn.jsdelivr.net/jquery.ui.rotatable/1.0.1/rotate.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: 15px;
-  width: 15px;
-  position: absolute;
-  top: -15px;
-  right: -13px;
+<style scoped>
+.selectable-seat.ui-selected {
+  background: #f39814;
+  color: white;
 }
 </style>

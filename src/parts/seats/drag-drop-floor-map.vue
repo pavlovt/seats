@@ -6,7 +6,7 @@
       </div>
     </div>
     <div id="dropzone" class="ui-widget-header floor-map">
-      <seat v-for="seat in seats" v-bind:key="seat.id" v-bind:position="seat.position"></seat>
+      <seat v-for="seat in seats" v-bind:key="seat.id" v-bind:position="seat.position" v-bind:seatId="seat.id" :onSelectSeat="onSelectSeat"></seat>
     </div>
   </div>
 </template>
@@ -14,7 +14,8 @@
 export default {
   name: "drag-drop-floor-map",
   props: {
-    seats: Array
+    seats: Array,
+    onSelectSeat: Function
   },
 
   data: () => ({
@@ -125,5 +126,16 @@ export default {
   background-image: url("https://cdn.pbrd.co/images/HqV80K4.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+.ui-rotatable-handle {
+  background: url("https://cdn.jsdelivr.net/jquery.ui.rotatable/1.0.1/rotate.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  top: -15px;
+  right: -13px;
 }
 </style>
