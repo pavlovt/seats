@@ -6,7 +6,7 @@
       </div>
     </div>
     <div id="dropzone" class="ui-widget-header floor-map">
-      <seat v-for="seat in seats" v-bind:key="seat.id" v-bind:position="seat.position" v-bind:seatId="seat.id" :onSelectSeat="onSelectSeat"></seat>
+      <seat v-for="seat in seats" v-bind:key="seat.id" v-bind:position="seat.position" v-bind:seatId="seat.id" :onSelectSeat="onSelectSeat" :selectedSeat="selectedSeat"></seat>
     </div>
   </div>
 </template>
@@ -15,7 +15,8 @@ export default {
   name: "drag-drop-floor-map",
   props: {
     seats: Array,
-    onSelectSeat: Function
+    onSelectSeat: Function,
+    selectedSeat: Object
   },
 
   data: () => ({

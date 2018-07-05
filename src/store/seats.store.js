@@ -20,6 +20,14 @@ class SeatsStore {
       assignee: 'Trifon Trifonov',
       workPlaceNumber: 100
     }]
+
+    @observable
+    selectedSeat = {}
+
+    @action.bound
+    setSelectedSeat(seatId) {
+      this.selectedSeat = _.find(this.seats, { id: seatId })
+    }
 }
 
 export default SeatsStore

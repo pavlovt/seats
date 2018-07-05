@@ -1,5 +1,9 @@
 <template>
-  <div class="object activeElement ui-draggable editable-seat selectable-seat" :style="position" v-on:click="onSelectSeat(seatId)">
+  <div
+    v-bind:class="['object activeElement ui-draggable editable-seat selectable-seat', {'ui-selected': seatId === selectedSeat.id}]"
+    :style="position"
+    v-on:click="onSelectSeat(seatId)"
+    >
     <img src="https://svgshare.com/i/7BU.svg" width="50">
     <div class="ui-rotatable-handle ui-draggable"></div>
   </div>
@@ -10,7 +14,8 @@ export default {
   props: {
     position: String,
     seatId: Number,
-    onSelectSeat: Function
+    onSelectSeat: Function,
+    selectedSeat: Object
   }
 }
 </script>
