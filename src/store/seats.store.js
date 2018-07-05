@@ -26,7 +26,13 @@ class SeatsStore {
 
     @action.bound
     setSelectedSeat(seatId) {
-      this.selectedSeat = _.find(this.seats, { id: seatId })
+      this.selectedSeat = _.cloneDeep(_.find(this.seats, { id: seatId }))
+    }
+
+    @action.bound
+    updateSelectedSeat(seat) {
+      const updatedSeat = _.find(this.seats, { id: seat.id })
+      _.extend(updatedSeat, seat);
     }
 }
 

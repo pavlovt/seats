@@ -11,7 +11,7 @@
     name: 'xinput',
     // ['label', 'name', 'placeholder', 'id', 'type'],
     props: {
-      value: String,
+      value: String | Number,
       label: String,
       name: String,
       placeholder: String,

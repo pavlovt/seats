@@ -1,7 +1,10 @@
 <template>
   <div id="content">
     <drag-drop-floor-map v-bind:seats="state.seats" :onSelectSeat="onSelectSeat" :selectedSeat="state.selectedSeat"></drag-drop-floor-map>
-    {{this.state.selectedSeat}}
+    <div class="container-seat-form">
+      {{state.selectedSeat}}
+      <seat-form :seat="state.selectedSeat" :saveSeatData="saveSeatData"></seat-form>
+    </div>
   </div>
 </template>
 <script>
@@ -20,7 +23,16 @@ export default observer({
   methods: {
     onSelectSeat(seatId) {
       this.state.setSelectedSeat(seatId)
+    },
+    saveSeatData(seat) {
+      this.state.updateSelectedSeat(seat)
     }
   }
 });
 </script>
+<style scoped>
+.container-seat-form {
+  width: 20%;
+  float: left;
+}
+</style>
