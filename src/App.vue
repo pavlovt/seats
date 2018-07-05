@@ -1,10 +1,10 @@
 <template lang="ehtml">
-  div.container id=app {
+  div id=app {
     div id=nav {
       router-link  to=/login { 'Login' } ' | ' 
       router-link  to=/ { 'Home' } ' | ' 
       router-link  to=/about { 'About' } ' | '
-      router-link  to=/seats { 'Seats' }  ' | '
+      router-link  to=/seats-admin { 'Seats Admin' }  ' | '
       router-link  to=/contact { 'Contact' }
     }
     router-view  {}
