@@ -72,6 +72,8 @@ export default {
             zIndex: 10
           });
 
+          // Save the position
+
           canvasElement
             .draggable(this.draggableConfig)
             .rotatable(this.rotatableConfig);

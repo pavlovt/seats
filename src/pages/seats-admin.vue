@@ -26,6 +26,7 @@ export default observer({
     },
     saveSeatData(seat) {
       this.state.updateSelectedSeat(seat)
+      msg.info('Saved!')
     }
   }
 });
