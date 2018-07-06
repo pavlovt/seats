@@ -39,12 +39,17 @@ export default {
   methods: {
     updateSeatPosition(el) {
       if (!_.isNil(el.attr) && _.isFunction(el.attr)) {
-        const seatId = +el.attr('data-seatid')
+        const seatId = el.attr('data-seatid')
         const style = el.attr('style')
+        let afterSeatSaveHandler = null;
 
-        if (!_.isNil(seatId) && !_.isNil(style)) {
-          this.onSeatSave({ id: seatId, position: style })
+        if (_.isNil(seatId)) {
+          afterSeatSaveHandler = seatIdentifier => {
+            el.attr('data-seatid', seatIdentifier)
+          }
         }
+
+        this.onSeatSave({ id: seatId, position: style }, afterSeatSaveHandler)
       }
     },
 
@@ -67,7 +72,8 @@ export default {
       });
     });
 
-    $(".draggable").draggable(Object.assign({}, this.draggableConfig, { helper: 'clone' }));
+    $(".draggable")
+      .draggable(Object.assign({}, this.draggableConfig, { helper: 'clone' }));
 
     $("#dropzone").droppable({
       drop: function(event, ui) {

@@ -24,8 +24,8 @@ export default observer({
     onSelectSeat(seatId) {
       this.state.setSelectedSeat(seatId)
     },
-    saveSeatData(seat) {
-      this.state.updateSelectedSeat(seat)
+    saveSeatData(seat, afterSeatSavedHandler) {
+      this.state.updateSelectedSeat(seat, afterSeatSavedHandler)
       msg.info('Saved!')
     }
   }

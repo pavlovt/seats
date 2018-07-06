@@ -1,6 +1,6 @@
 <template>
   <div
-    v-bind:class="['object activeElement ui-draggable editable-seat selectable-seat', {'ui-selected': seatId === selectedSeat.id}]"
+    v-bind:class="['object activeElement ui-draggable editable-seat selectable-seat', {'ui-selected': seatId == selectedSeat.id}]"
     :style="position"
     v-on:click="onSelectSeat(seatId)"
     >
@@ -13,7 +13,7 @@ export default {
   name: 'seat',
   props: {
     position: String,
-    seatId: Number,
+    seatId: Number | String,
     onSelectSeat: Function,
     selectedSeat: Object
   }
