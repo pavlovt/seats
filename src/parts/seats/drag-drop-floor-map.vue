@@ -6,7 +6,15 @@
       </div>
     </div>
     <div id="dropzone" class="ui-widget-header floor-map">
-      <seat v-for="seat in seats" v-bind:key="seat.id" v-bind:position="seat.position" v-bind:seatId="seat.id" :onSelectSeat="onSelectSeat" :selectedSeat="selectedSeat"></seat>
+      <seat
+        v-for="seat in seats"
+        v-bind:key="seat.id"
+        v-bind:position="seat.position"
+        v-bind:seatId="seat.id"
+        :onSelectSeat="onSelectSeat"
+        :selectedSeat="selectedSeat"
+        :data-seatId="seat.id"
+        ></seat>
     </div>
   </div>
 </template>
@@ -16,7 +24,8 @@ export default {
   props: {
     seats: Array,
     onSelectSeat: Function,
-    selectedSeat: Object
+    selectedSeat: Object,
+    onSeatSave: Function
   },
 
   data: () => ({
@@ -30,8 +39,23 @@ export default {
     }
   }),
 
+  methods: {
+    updateSeatPosition(el) {
+      if (!_.isNil(el.attr) && _.isFunction(el.attr)) {
+        const seatId = +el.attr('data-seatid')
+        const style = el.attr('style')
+
+        if (!_.isNil(seatId) && !_.isNil(style)) {
+          this.onSeatSave({ id: seatId, position: style })
+        }
+      }
+    }
+  },
+
   mounted() {
-    this.$nextTick(function attachDraggableHandles() {
+    const self = this;
+
+    self.$nextTick(function attachDraggableHandles() {
       $(".object.ui-draggable").each((idx, el) => {
         $(el)
           .draggable(this.draggableConfig)
@@ -44,6 +68,9 @@ export default {
     $("#dropzone").droppable({
       drop: function(event, ui) {
         var canvas = $(this);
+
+        self.updateSeatPosition(ui.helper)
+
         if (!ui.draggable.hasClass("object")) {
           var canvasElement = ui.helper.clone();
           canvasElement.addClass("object");
@@ -71,8 +98,6 @@ export default {
             position: "absolute",
             zIndex: 10
           });
-
-          // Save the position
 
           canvasElement
             .draggable(this.draggableConfig)
