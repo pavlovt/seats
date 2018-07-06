@@ -9,8 +9,8 @@
       <seat
         v-for="seat in seats"
         :key="seat.id"
-        v-bind:position="seat.position"
-        v-bind:seatId="seat.id"
+        :position="seat.position"
+        :seatId="seat.id"
         :onSelectSeat="onSelectSeat"
         :selectedSeat="selectedSeat"
         :data-seatId="seat.id"
@@ -39,22 +39,32 @@ export default {
   methods: {
     updateSeatPosition(el) {
       if (!_.isNil(el.attr) && _.isFunction(el.attr)) {
-        const seatId = el.attr('data-seatid')
-        const style = el.attr('style')
+        const seatId = el.attr("data-seatid");
+        const style = el.attr("style");
         let afterSeatSaveHandler = null;
 
         if (_.isNil(seatId)) {
           afterSeatSaveHandler = seatIdentifier => {
-            el.attr('data-seatid', seatIdentifier)
-          }
+            el.attr("data-seatid", seatIdentifier);
+            this.makeDragAndRotatable(el)
+          };
         }
 
-        this.onSeatSave({ id: seatId, position: style }, afterSeatSaveHandler)
+        this.onSeatSave({ id: seatId, position: style }, afterSeatSaveHandler);
       }
     },
 
     handleRotateStop(e, ui) {
-      this.updateSeatPosition(ui.element)
+      this.updateSeatPosition(ui.element);
+    },
+
+    makeDragAndRotatable(el) {
+      $(el)
+        .draggable(this.draggableConfig)
+        .rotatable({
+          snap: 2,
+          stop: this.handleRotateStop
+        });
     }
   },
 
@@ -63,17 +73,13 @@ export default {
 
     self.$nextTick(function attachDraggableHandles() {
       $(".object.ui-draggable").each((idx, el) => {
-        $(el)
-          .draggable(self.draggableConfig)
-          .rotatable({
-            snap: 2,
-            stop: self.handleRotateStop
-          });
+        self.makeDragAndRotatable(el);
       });
     });
 
-    $(".draggable")
-      .draggable(Object.assign({}, this.draggableConfig, { helper: 'clone' }));
+    $(".draggable").draggable(
+      Object.assign({}, this.draggableConfig, { helper: "clone" })
+    );
 
     $("#dropzone").droppable({
       drop: function(event, ui) {
@@ -106,16 +112,10 @@ export default {
             zIndex: 10
           });
 
-          canvasElement
-            .draggable(self.draggableConfig)
-            .rotatable({
-              snap: 2,
-              stop: self.handleRotateStop
-            });
-
-          self.updateSeatPosition(canvasElement)
+          self.makeDragAndRotatable(canvasElement);
+          self.updateSeatPosition(canvasElement);
         } else {
-          self.updateSeatPosition(ui.helper)
+          self.updateSeatPosition(ui.helper);
         }
       }
     });
