@@ -33,9 +33,6 @@ export default {
       cursor: "move",
       grid: [20, 20],
       containment: "#dropzone"
-    },
-    rotatableConfig: {
-      snap: 2
     }
   }),
 
@@ -49,6 +46,10 @@ export default {
           this.onSeatSave({ id: seatId, position: style })
         }
       }
+    },
+
+    handleRotateStop(e, ui) {
+      this.updateSeatPosition(ui.element)
     }
   },
 
@@ -58,8 +59,11 @@ export default {
     self.$nextTick(function attachDraggableHandles() {
       $(".object.ui-draggable").each((idx, el) => {
         $(el)
-          .draggable(this.draggableConfig)
-          .rotatable(this.rotatableConfig);
+          .draggable(self.draggableConfig)
+          .rotatable({
+            snap: 2,
+            stop: self.handleRotateStop
+          });
       });
     });
 
@@ -100,8 +104,11 @@ export default {
           });
 
           canvasElement
-            .draggable(this.draggableConfig)
-            .rotatable(this.rotatableConfig);
+            .draggable(self.draggableConfig)
+            .rotatable({
+              snap: 2,
+              stop: self.handleRotateStop
+            });
         }
       }
     });
