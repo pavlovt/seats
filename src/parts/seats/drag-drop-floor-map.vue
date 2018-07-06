@@ -46,7 +46,6 @@ export default {
         if (_.isNil(seatId)) {
           afterSeatSaveHandler = seatIdentifier => {
             el.attr("data-seatid", seatIdentifier);
-            this.makeDragAndRotatable(el)
           };
         }
 
@@ -71,12 +70,6 @@ export default {
   mounted() {
     const self = this;
 
-    self.$nextTick(function attachDraggableHandles() {
-      $(".object.ui-draggable").each((idx, el) => {
-        self.makeDragAndRotatable(el);
-      });
-    });
-
     $(".draggable").draggable(
       Object.assign({}, this.draggableConfig, { helper: "clone" })
     );
@@ -92,7 +85,6 @@ export default {
           canvasElement.removeClass(
             "draggable ui-draggable ui-draggable-handle ui-draggable-dragging"
           );
-          // canvas.append(canvasElement);
 
           var off = canvas.position();
           var cElOff = {
