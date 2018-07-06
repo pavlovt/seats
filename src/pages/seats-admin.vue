@@ -1,6 +1,6 @@
 <template>
   <div id="content">
-    <drag-drop-floor-map v-bind:seats="state.seats" :onSelectSeat="onSelectSeat" :selectedSeat="state.selectedSeat" :onSeatSave="saveSeatData"></drag-drop-floor-map>
+    <drag-drop-floor-map :seats="state.seats" :onSelectSeat="onSelectSeat" :selectedSeat="state.selectedSeat" :onSeatSave="saveSeatData"></drag-drop-floor-map>
     <div class="container-seat-form">
       {{state.selectedSeat}}
       <seat-form :seat="state.selectedSeat" :saveSeatData="saveSeatData"></seat-form>

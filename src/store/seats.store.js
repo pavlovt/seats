@@ -26,14 +26,14 @@ class SeatsStore {
 
     @action.bound
     setSelectedSeat(seatId) {
-      //this.selectedSeat = _.cloneDeep(_.find(this.seats, s => s.id == seatId))
+      this.selectedSeat = _.cloneDeep(_.find(this.seats, s => s.id == seatId))
     }
 
     @action.bound
     updateSelectedSeat(seat, afterSeatSavedHandler) {
       if (_.isNaN(seat.id) || _.isNil(seat.id)) {
         seat.id = _.uniqueId('seat-')
-        this.seats.push(_.cloneDeep(seat))
+        this.seats = _.concat(this.seats, _.cloneDeep(seat))
       }
 
       const updatedSeat = _.find(this.seats, s => s.id == seat.id)

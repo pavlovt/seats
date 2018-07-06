@@ -8,7 +8,7 @@
     <div id="dropzone" class="ui-widget-header floor-map">
       <seat
         v-for="seat in seats"
-        v-bind:key="seat.id"
+        :key="seat.id"
         v-bind:position="seat.position"
         v-bind:seatId="seat.id"
         :onSelectSeat="onSelectSeat"
@@ -78,9 +78,6 @@ export default {
     $("#dropzone").droppable({
       drop: function(event, ui) {
         var canvas = $(this);
-
-        self.updateSeatPosition(ui.helper)
-
         if (!ui.draggable.hasClass("object")) {
           var canvasElement = ui.helper.clone();
           canvasElement.addClass("object");
@@ -89,7 +86,7 @@ export default {
           canvasElement.removeClass(
             "draggable ui-draggable ui-draggable-handle ui-draggable-dragging"
           );
-          canvas.append(canvasElement);
+          // canvas.append(canvasElement);
 
           var off = canvas.position();
           var cElOff = {
@@ -115,6 +112,10 @@ export default {
               snap: 2,
               stop: self.handleRotateStop
             });
+
+          self.updateSeatPosition(canvasElement)
+        } else {
+          self.updateSeatPosition(ui.helper)
         }
       }
     });
