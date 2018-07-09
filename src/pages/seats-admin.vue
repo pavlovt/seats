@@ -8,6 +8,9 @@
     <div class="clearfix"></div>
     <div>
       <i class="fa fa-trash" id="trash"></i>
+      <audio id="trashAudio">
+        <source src="sounds/trash.mp3" type="audio/mp3">
+      </audio>
     </div>
   </div>
 </template>
@@ -31,17 +34,20 @@ export default observer({
     saveSeatData(seat, afterSeatSavedHandler) {
       this.state.updateSelectedSeat(seat, afterSeatSavedHandler)
       msg.info('Saved!')
-    },
-    onDeletedSeat(event, ui) {
-      const seatId = ui.helper.attr("data-seatid")
-      this.state.deleteSeat(seatId)
-      ui.draggable.remove()
     }
   },
 
   mounted() {
+    const audioEl = document.getElementById('trashAudio');
+    const self = this;
+
     $('#trash').droppable({
-        over: this.onDeletedSeat
+        over: function(event, ui) {
+          const seatId = ui.helper.attr("data-seatid")
+          self.state.deleteSeat(seatId)
+          ui.draggable.remove()
+          audioEl.play();
+        }
     });
   }
 });
