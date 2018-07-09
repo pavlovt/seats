@@ -33,6 +33,7 @@
   window.store = store
   import domUtils from './core/dom-utils'
   window.domUtils = domUtils
+  import 'font-awesome/css/font-awesome.min.css'
 
   // init html head
   import head from './core/head'

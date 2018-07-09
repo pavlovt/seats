@@ -8,9 +8,9 @@
     <div id="dropzone" class="ui-widget-header floor-map">
       <seat
         v-for="seat in seats"
-        v-bind:key="seat.id"
-        v-bind:position="seat.position"
-        v-bind:seatId="seat.id"
+        :key="seat.id"
+        :position="seat.position"
+        :seatId="seat.id"
         :onSelectSeat="onSelectSeat"
         :selectedSeat="selectedSeat"
         :data-seatId="seat.id"
@@ -33,44 +33,50 @@ export default {
       cursor: "move",
       grid: [20, 20],
       containment: "#dropzone"
-    },
-    rotatableConfig: {
-      snap: 2
     }
   }),
 
   methods: {
     updateSeatPosition(el) {
       if (!_.isNil(el.attr) && _.isFunction(el.attr)) {
-        const seatId = +el.attr('data-seatid')
-        const style = el.attr('style')
+        const seatId = el.attr("data-seatid");
+        const style = el.attr("style");
+        let afterSeatSaveHandler = null;
 
-        if (!_.isNil(seatId) && !_.isNil(style)) {
-          this.onSeatSave({ id: seatId, position: style })
+        if (_.isNil(seatId)) {
+          afterSeatSaveHandler = seatIdentifier => {
+            el.attr("data-seatid", seatIdentifier);
+          };
         }
+
+        this.onSeatSave({ id: seatId, position: style }, afterSeatSaveHandler);
       }
+    },
+
+    handleRotateStop(e, ui) {
+      this.updateSeatPosition(ui.element);
+    },
+
+    makeDragAndRotatable(el) {
+      $(el)
+        .draggable(this.draggableConfig)
+        .rotatable({
+          snap: 2,
+          stop: this.handleRotateStop
+        });
     }
   },
 
   mounted() {
     const self = this;
 
-    self.$nextTick(function attachDraggableHandles() {
-      $(".object.ui-draggable").each((idx, el) => {
-        $(el)
-          .draggable(this.draggableConfig)
-          .rotatable(this.rotatableConfig);
-      });
-    });
-
-    $(".draggable").draggable(Object.assign({}, this.draggableConfig, { helper: 'clone' }));
+    $(".draggable").draggable(
+      Object.assign({}, this.draggableConfig, { helper: "clone" })
+    );
 
     $("#dropzone").droppable({
       drop: function(event, ui) {
         var canvas = $(this);
-
-        self.updateSeatPosition(ui.helper)
-
         if (!ui.draggable.hasClass("object")) {
           var canvasElement = ui.helper.clone();
           canvasElement.addClass("object");
@@ -79,7 +85,6 @@ export default {
           canvasElement.removeClass(
             "draggable ui-draggable ui-draggable-handle ui-draggable-dragging"
           );
-          canvas.append(canvasElement);
 
           var off = canvas.position();
           var cElOff = {
@@ -99,9 +104,10 @@ export default {
             zIndex: 10
           });
 
-          canvasElement
-            .draggable(this.draggableConfig)
-            .rotatable(this.rotatableConfig);
+          self.makeDragAndRotatable(canvasElement);
+          self.updateSeatPosition(canvasElement);
+        } else {
+          self.updateSeatPosition(ui.helper);
         }
       }
     });
