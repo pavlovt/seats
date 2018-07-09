@@ -5,6 +5,10 @@
       {{state.selectedSeat}}
       <seat-form :seat="state.selectedSeat" :saveSeatData="saveSeatData"></seat-form>
     </div>
+    <div class="clearfix"></div>
+    <div>
+      <i class="fa fa-trash" id="trash"></i>
+    </div>
   </div>
 </template>
 <script>
@@ -27,7 +31,18 @@ export default observer({
     saveSeatData(seat, afterSeatSavedHandler) {
       this.state.updateSelectedSeat(seat, afterSeatSavedHandler)
       msg.info('Saved!')
+    },
+    onDeletedSeat(event, ui) {
+      const seatId = ui.helper.attr("data-seatid")
+      this.state.deleteSeat(seatId)
+      ui.draggable.remove()
     }
+  },
+
+  mounted() {
+    $('#trash').droppable({
+        over: this.onDeletedSeat
+    });
   }
 });
 </script>
@@ -35,5 +50,13 @@ export default observer({
 .container-seat-form {
   width: 20%;
   float: left;
+}
+
+.fa.fa-trash {
+  font-size: 66px;
+}
+
+.fa.fa-trash:hover {
+  color: red;
 }
 </style>

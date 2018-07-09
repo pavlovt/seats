@@ -43,6 +43,11 @@ class SeatsStore {
         afterSeatSavedHandler(seat.id)
       }
     }
+
+    @action.bound
+    deleteSeat(seatId) {
+      _.remove(this.seats, s => s.id === seatId)
+    }
 }
 
 export default SeatsStore
