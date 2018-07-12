@@ -34,7 +34,9 @@
   import domUtils from './core/dom-utils'
   window.domUtils = domUtils
   import 'font-awesome/css/font-awesome.min.css'
-
+  import zoom from 'svg-pan-zoom';
+  window.svgPanZoom = zoom;
+  
   // init html head
   import head from './core/head'
   head.init(conf.head)

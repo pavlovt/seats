@@ -6,6 +6,8 @@
       </div>
     </div>
     <div id="dropzone" class="ui-widget-header floor-map">
+      <floor-2-zoom-map></floor-2-zoom-map>
+
       <seat
         v-for="seat in seats"
         :key="seat.id"
@@ -69,6 +71,8 @@ export default {
 
   mounted() {
     const self = this;
+
+    // window.svgPanZoom('#dropzone')
 
     $(".draggable").draggable(
       Object.assign({}, this.draggableConfig, { helper: "clone" })
@@ -148,16 +152,15 @@ export default {
 
 #dropzone {
   padding: 0.5em;
-  float: left;
   margin: 10px;
   position: relative;
 }
 
 .floor-map {
-  width: 1000px;
-  height: 493px;
+  width: 1400px;
+  height: 793px;
   float: left;
-  background-image: url("https://cdn.pbrd.co/images/HqV80K4.jpg");
+  /* background-image: url("/img/floor_6.svg"); */
   background-repeat: no-repeat;
   background-size: 100%;
 }
