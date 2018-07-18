@@ -4,7 +4,7 @@
     :style="position"
     v-on:click="onSelectSeat(seatId)"
     >
-    <img src="https://svgshare.com/i/7BU.svg" width="50">
+    <img v-bind:src="seatIconUrl" width="50">
     <div class="ui-rotatable-handle ui-draggable"></div>
   </div>
 </template>
@@ -15,7 +15,8 @@ export default {
     position: String,
     seatId: Number | String,
     onSelectSeat: Function,
-    selectedSeat: Object
+    selectedSeat: Object,
+    seatIconUrl: String
   },
   mounted() {
     $(`.object.ui-draggable.${this.seatId}`)

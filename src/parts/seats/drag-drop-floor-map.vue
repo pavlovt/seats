@@ -2,7 +2,7 @@
   <div>
     <div id="element">
       <div class="draggable">
-        <img id="drag1" src="https://svgshare.com/i/7BU.svg" alt="seat" width="50px" />
+        <img id="drag1" v-bind:src="seatIconUrl" alt="seat" width="50px" />
       </div>
     </div>
     <div id="dropzone" class="ui-widget-header floor-map">
@@ -16,6 +16,7 @@
         :onSelectSeat="onSelectSeat"
         :selectedSeat="selectedSeat"
         :data-seatId="seat.id"
+        :seatIconUrl="seatIconUrl"
         ></seat>
     </div>
   </div>
@@ -35,7 +36,8 @@ export default {
       cursor: "move",
       grid: [20, 20],
       containment: "#dropzone"
-    }
+    },
+    seatIconUrl: 'img/seats/bash-design/desks/normal/100.svg'
   }),
 
   methods: {
