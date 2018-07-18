@@ -1,5 +1,5 @@
-<template>
-  <svg id="floor-2-map" width="1206px" height="831px" viewBox="0 0 1206 831" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1206px" height="831px" viewBox="0 0 1206 831" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
     <title>Group 4 Copy 3</title>
     <desc>Created with Sketch.</desc>
@@ -196,32 +196,3 @@
         </g>
     </g>
 </svg>
-</template>
-<script>
-export default {
-  name: 'floor-2-zoom-map',
-  mounted() {
-    /*
-    *   TODO: The admin will not be able to zoom !
-    */
-    //   let svgPanInstance = window.svgPanZoom('#floor-2-map', {
-    //       onZoom: function(){
-    //           console.log(svgPanInstance.getSizes());
-    //       }
-    //   })
-  }
-}
-</script>
-<style scoped>
-    svg {
-        overflow: hidden;
-        display: inline;
-        width: inherit;
-        min-width: inherit;
-        max-width: inherit;
-        height: inherit;
-        min-height: inherit;
-        max-height: inherit;
-    }
-</style>
-
