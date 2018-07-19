@@ -4,25 +4,41 @@ class SeatsStore {
     @observable
     seats = [{
       id: "1",
-      position: 'position: absolute; left: 270px; top: 280px; z-index: 10; transform: rotate(-5.4367rad);',
+      x: 338,
+      y: 323,
       assignee: 'Valeri Hristov',
       workPlaceNumber: 39
     }, 
     {
       id: "2",
-      position: 'position: absolute; left: 350px; top: 140px; z-index: 10;',
+      x: 838,
+      y: 123,
       assignee: 'Todor Pavlov',
       workPlaceNumber: 1
     },
     {
       id: "3",
-      position: 'position: absolute; left: 250px; top: 140px; z-index: 10;',
+      x: 18,
+      y: 23,
       assignee: 'Trifon Trifonov',
       workPlaceNumber: 100
     }]
 
     @observable
     selectedSeat = {}
+
+    @action.bound
+    addEmptySeat(seatX, seatY) {
+      const newSeat = {
+        id: _.uniqueId('seat-'),
+        x: seatX,
+        y: seatY,
+        assignee: null,
+        workPlaceNumber: null
+      }
+
+      this.seats = _.concat(this.seats, newSeat)
+    }
 
     @action.bound
     setSelectedSeat(seatId) {

@@ -1,0 +1,36 @@
+<template>
+  <svg version="1.1" width="50px" height="50px" 
+    id="drag1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+    v-bind:x="x" v-bind:y="y"
+    viewBox="0 0 120 120" style="enable-background:new 0 0 120 120;" xml:space="preserve">
+    <title>normal/100</title>
+    <desc>Created with Sketch.</desc>
+    <g id="normal_x2F_100">
+      <g>
+        <path id="Line-5_1_" class="st0" d="M66.6,7c0-3,2.5-5.5,5.5-5.5l40.9,0c3,0,5.5,2.5,5.5,5.5v106c0,3-2.5,5.5-5.5,5.5H7
+        c-3,0-5.5-2.5-5.5-5.5V71.5C1.5,68.4,4,66,7,66h25.9c18.6,0,33.7-15.1,33.7-33.7V7z"/>
+        <path class="st1" d="M113,120H7c-3.9,0-7-3.1-7-7V71.5c0-3.9,3.1-7,7-7h25.9c17.8,0,32.2-14.5,32.2-32.2V7c0-3.9,3.1-7,7-7H113
+        c3.9,0,7,3.1,7,7v106C120,116.9,116.9,120,113,120z M7,67.5c-2.2,0-4,1.8-4,4V113c0,2.2,1.8,4,4,4h106c2.2,0,4-1.8,4-4V7
+        c0-2.2-1.8-4-4-4H72.1c-2.2,0-4,1.8-4,4v25.2c0,19.4-15.8,35.2-35.2,35.2H7z"/>
+      </g>
+      <circle id="Oval" class="st0" cx="24" cy="24" r="24"/>
+    </g>
+  </svg>
+</template>
+<script>
+export default {
+  name: 'seat-svg',
+  props: {
+    x: Number,
+    y: Number
+  }
+}
+</script>
+<style>
+.st0 {
+  fill: #ffffff;
+}
+.st1 {
+  fill: #48dbff;
+}
+</style>
