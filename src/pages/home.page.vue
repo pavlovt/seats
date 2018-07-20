@@ -3,7 +3,7 @@
       .col {
           img src=/img/logo.png {}
           form @submit.prevent=submit {
-              input v-model="frm.z" {}
+              xauto name=username label=Username v-model=frm.username :data="data" text="qqq" {}
               br {}
               button.btn.btn-primary { 'Submit' }
           }
@@ -25,7 +25,8 @@ export default {
   },
   data() {
     return {
-      frm: {}
+      frm: {},
+      data: [{id: 'au', text: 'Australia'}, {id: 'at', text: 'Austria'}, {id: 'br', text: 'Brasil'}]
     }
   },
   methods: {
