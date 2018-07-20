@@ -4,6 +4,7 @@
     height="50px" 
     v-bind:id="id"
     class="draggable selectable"
+    v-bind:class="{selected: selectedSeatId === id}"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" 
     v-bind:x="x"
@@ -23,7 +24,7 @@
         c3.9,0,7,3.1,7,7v106C120,116.9,116.9,120,113,120z M7,67.5c-2.2,0-4,1.8-4,4V113c0,2.2,1.8,4,4,4h106c2.2,0,4-1.8,4-4V7
         c0-2.2-1.8-4-4-4H72.1c-2.2,0-4,1.8-4,4v25.2c0,19.4-15.8,35.2-35.2,35.2H7z"/>
       </g>
-      <circle id="Oval" class="st0" cx="24" cy="24" r="24"/>
+      <circle id="Oval" class="st3" cx="24" cy="24" r="24"/>
     </g>
   </svg>
 </template>
@@ -34,7 +35,11 @@ export default {
     x: Number,
     y: Number,
     id: String,
-    setSelectedSeat: Function
+    setSelectedSeat: Function,
+    selectedSeatId: {
+      type: String,
+      default: ''
+    }
   },
   data: () => ({
     draggableConfig: {
@@ -58,7 +63,7 @@ export default {
 };
 </script>
 <style>
-.st0 {
+.st3, .st0 {
   fill: #ffffff;
 }
 .st1 {
@@ -67,5 +72,13 @@ export default {
 .draggable {
   float: left;
   z-index: 50;
+  cursor: pointer;
+}
+.selected .st1 {
+  fill: orange;
+}
+
+.selected .st3 {
+  fill: orange;
 }
 </style>

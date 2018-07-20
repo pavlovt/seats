@@ -4,7 +4,7 @@
         <seat-svg></seat-svg>
     </div>
     <div id="dropzone" class="ui-widget-header floor-map">
-      <floor-2-map v-bind:seats="seats" :setSelectedSeat="onSelectSeat"></floor-2-map>
+      <floor-2-map v-bind:seats="seats" :setSelectedSeat="onSelectSeat" :selectedSeatId="selectedSeat.id"></floor-2-map>
     </div>
   </div>
 </template>

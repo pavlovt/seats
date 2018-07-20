@@ -200,6 +200,7 @@
         :x="seat.x"
         :y="seat.y"
         :setSelectedSeat="setSelectedSeat"
+        :selectedSeatId="selectedSeatId"
         ></seat-svg>
 </svg>
 </template>
@@ -208,7 +209,8 @@ export default {
   name: 'floor-2-map',
   props: {
       seats: Array,
-      setSelectedSeat: Function
+      setSelectedSeat: Function,
+      selectedSeatId: String
   }
 }
 </script>
