@@ -1,6 +1,6 @@
 <template>
   <svg version="1.1" width="50px" height="50px" 
-    id="drag1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+    id="drag1" class="draggable" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
     v-bind:x="x" v-bind:y="y"
     viewBox="0 0 120 120" style="enable-background:new 0 0 120 120;" xml:space="preserve">
     <title>normal/100</title>
@@ -23,6 +23,18 @@ export default {
   props: {
     x: Number,
     y: Number
+  },
+  data: () => ({
+    draggableConfig: {
+      cursor: "move",
+      grid: [10, 10],
+      containment: "#dropzone"
+    },
+  }),
+  mounted() {
+    $(".draggable").draggable(
+      Object.assign({}, this.draggableConfig, { helper: "clone" })
+    );
   }
 }
 </script>
@@ -32,5 +44,9 @@ export default {
 }
 .st1 {
   fill: #48dbff;
+}
+.draggable {
+  float: left;
+  z-index: 50;
 }
 </style>

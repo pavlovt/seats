@@ -1,9 +1,7 @@
 <template>
   <div>
     <div id="element">
-      <div class="draggable">
         <seat-svg></seat-svg>
-      </div>
     </div>
     <div id="dropzone" class="ui-widget-header floor-map">
       <floor-2-map v-bind:seats="seats"></floor-2-map>
@@ -21,29 +19,17 @@ export default {
     addEmptySeat: Function
   },
 
-  data: () => ({
-    draggableConfig: {
-      cursor: "move",
-      grid: [20, 20],
-      containment: "#dropzone"
-    },
-    seatIconUrl: "img/seats/bash-design/desks/normal/50.svg"
-  }),
-
   methods: {},
 
   mounted() {
     const self = this;
 
-    $(".draggable").draggable(
-      Object.assign({}, this.draggableConfig, { helper: "clone" })
-    );
-
     $("#dropzone").droppable({
       drop: function(event, ui) {
         const off = $(this).position()
-        const left = ui.position.left - off.left
-        const top = ui.position.top - off.top
+        const offsetFix = 11;
+        const left = ui.position.left - off.left - offsetFix
+        const top = ui.position.top - off.top - offsetFix
         // Add the svg to the store
         self.addEmptySeat(left, top)
       }
@@ -52,11 +38,6 @@ export default {
 };
 </script>
 <style>
-.draggable {
-  float: left;
-  z-index: 10;
-}
-
 #dropzone {
   margin: 10px;
   position: relative;
