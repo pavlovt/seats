@@ -1,8 +1,18 @@
 <template>
-  <svg version="1.1" width="50px" height="50px" 
-    id="drag1" class="draggable" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-    v-bind:x="x" v-bind:y="y"
-    viewBox="0 0 120 120" style="enable-background:new 0 0 120 120;" xml:space="preserve">
+  <svg version="1.1"
+    width="50px"
+    height="50px" 
+    v-bind:id="id"
+    class="draggable selectable"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    v-bind:x="x"
+    v-bind:y="y"
+    v-on:click="selectSeat(id)"
+    viewBox="0 0 120 120"
+    style="enable-background:new 0 0 120 120;"
+    xml:space="preserve"
+    >
     <title>normal/100</title>
     <desc>Created with Sketch.</desc>
     <g id="normal_x2F_100">
@@ -19,24 +29,33 @@
 </template>
 <script>
 export default {
-  name: 'seat-svg',
+  name: "seat-svg",
   props: {
     x: Number,
-    y: Number
+    y: Number,
+    id: String,
+    setSelectedSeat: Function
   },
   data: () => ({
     draggableConfig: {
       cursor: "move",
       grid: [10, 10],
       containment: "#dropzone"
-    },
+    }
   }),
+  methods: {
+    selectSeat(seatId) {
+      if (_.isFunction(this.setSelectedSeat)) {
+        this.setSelectedSeat(seatId)
+      }
+    }
+  },
   mounted() {
     $(".draggable").draggable(
       Object.assign({}, this.draggableConfig, { helper: "clone" })
     );
   }
-}
+};
 </script>
 <style>
 .st0 {

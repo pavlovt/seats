@@ -42,6 +42,10 @@ class SeatsStore {
 
     @action.bound
     setSelectedSeat(seatId) {
+      if (_.isNil(seatId)) {
+        return;
+      }
+
       this.selectedSeat = _.cloneDeep(_.find(this.seats, s => s.id == seatId))
     }
 

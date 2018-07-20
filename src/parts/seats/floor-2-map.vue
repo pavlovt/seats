@@ -193,14 +193,22 @@
             </g>
         </g>
     </g>
-    <seat-svg v-for="seat in seats" v-bind:key="seat.id" :x="seat.x" :y="seat.y"></seat-svg>
+    <seat-svg
+        v-for="seat in seats"
+        v-bind:id="seat.id"
+        v-bind:key="seat.id"
+        :x="seat.x"
+        :y="seat.y"
+        :setSelectedSeat="setSelectedSeat"
+        ></seat-svg>
 </svg>
 </template>
 <script>
 export default {
   name: 'floor-2-map',
   props: {
-      seats: Array
+      seats: Array,
+      setSelectedSeat: Function
   }
 }
 </script>

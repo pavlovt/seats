@@ -4,7 +4,7 @@
         <seat-svg></seat-svg>
     </div>
     <div id="dropzone" class="ui-widget-header floor-map">
-      <floor-2-map v-bind:seats="seats"></floor-2-map>
+      <floor-2-map v-bind:seats="seats" :setSelectedSeat="onSelectSeat"></floor-2-map>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
     $("#dropzone").droppable({
       drop: function(event, ui) {
         const off = $(this).position()
-        const offsetFix = 11;
+        const offsetFix = 11
         const left = ui.position.left - off.left - offsetFix
         const top = ui.position.top - off.top - offsetFix
         // Add the svg to the store
@@ -40,7 +40,6 @@ export default {
 <style>
 #dropzone {
   margin: 10px;
-  position: relative;
 }
 
 .floor-map {
