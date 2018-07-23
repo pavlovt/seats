@@ -1,10 +1,16 @@
 <template>
   <div>
     <div id="element">
-        <seat-svg></seat-svg>
+        <seat-svg v-bind:clone="clone"></seat-svg>
     </div>
     <div id="dropzone" class="ui-widget-header floor-map">
-      <floor-2-map v-bind:seats="seats" :setSelectedSeat="onSelectSeat" :selectedSeatId="selectedSeat.id"></floor-2-map>
+      <floor-2-map
+        v-bind:seats="seats"
+        :setSelectedSeat="onSelectSeat"
+        :selectedSeatId="selectedSeat.id"
+        :updateSeatPosition="updateSeatPosition"
+        :constructSeatObj="constructSeatObj"
+        ></floor-2-map>
     </div>
   </div>
 </template>
@@ -16,8 +22,14 @@ export default {
     onSelectSeat: Function,
     selectedSeat: Object,
     onSeatSave: Function,
-    addEmptySeat: Function
+    upsertSeatData: Function,
+    updateSeatPosition: Function,
+    constructSeatObj: Function
   },
+
+  data: () => ({
+    clone: true
+  }),
 
   methods: {},
 
@@ -26,12 +38,7 @@ export default {
 
     $("#dropzone").droppable({
       drop: function(event, ui) {
-        const off = $(this).position()
-        const offsetFix = 11
-        const left = ui.position.left - off.left - offsetFix
-        const top = ui.position.top - off.top - offsetFix
-        // Add the svg to the store
-        self.addEmptySeat(left, top)
+        self.upsertSeatData(self.constructSeatObj(this, ui))
       }
     });
   }

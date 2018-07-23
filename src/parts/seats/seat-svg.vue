@@ -39,7 +39,10 @@ export default {
     selectedSeatId: {
       type: String,
       default: ''
-    }
+    },
+    updateSeatPosition: Function,
+    clone: Boolean,
+    constructSeatObj: Function
   },
   data: () => ({
     draggableConfig: {
@@ -56,8 +59,17 @@ export default {
     }
   },
   mounted() {
+    const self = this;
+
     $(".draggable").draggable(
-      Object.assign({}, this.draggableConfig, { helper: "clone" })
+      Object.assign({}, self.draggableConfig, {
+        helper: this.clone ? "clone" : "",
+        drag: (e, ui) => {
+          if (_.isFunction(self.updateSeatPosition)) {
+            self.updateSeatPosition(self.constructSeatObj($('#dropzone'), ui))
+          }
+        }
+      })
     );
   }
 };

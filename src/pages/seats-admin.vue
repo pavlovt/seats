@@ -1,6 +1,14 @@
 <template>
   <div id="content">
-    <drag-drop-floor-map :addEmptySeat="state.addEmptySeat" :seats="state.seats" :onSelectSeat="onSelectSeat" :selectedSeat="state.selectedSeat" :onSeatSave="saveSeatData"></drag-drop-floor-map>
+    <drag-drop-floor-map
+      :upsertSeatData="state.upsertSeatData"
+      :seats="state.seats"
+      :onSelectSeat="onSelectSeat"
+      :selectedSeat="state.selectedSeat"
+      :onSeatSave="saveSeatData"
+      :updateSeatPosition="state.updateSelectedSeat"
+      :constructSeatObj="state.constructSeatObj"
+      ></drag-drop-floor-map>
     <div class="container-seat-form">
       {{state.selectedSeat}}
       <seat-form :seat="state.selectedSeat" :saveSeatData="saveSeatData"></seat-form>

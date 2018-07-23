@@ -31,8 +31,6 @@
   window.alertify = alertify
   import store from './store/index.store'
   window.store = store
-  import domUtils from './core/dom-utils'
-  window.domUtils = domUtils
   import 'font-awesome/css/font-awesome.min.css'
   import zoom from 'svg-pan-zoom';
   window.svgPanZoom = zoom;

@@ -201,6 +201,8 @@
         :y="seat.y"
         :setSelectedSeat="setSelectedSeat"
         :selectedSeatId="selectedSeatId"
+        :updateSeatPosition="updateSeatPosition"
+        :constructSeatObj="constructSeatObj"
         ></seat-svg>
 </svg>
 </template>
@@ -210,7 +212,9 @@ export default {
   props: {
       seats: Array,
       setSelectedSeat: Function,
-      selectedSeatId: String
+      selectedSeatId: String,
+      updateSeatPosition: Function,
+      constructSeatObj: Function
   }
 }
 </script>
