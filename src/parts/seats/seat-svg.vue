@@ -66,7 +66,9 @@ export default {
         helper: this.clone ? "clone" : "",
         drag: (e, ui) => {
           if (_.isFunction(self.updateSeatPosition)) {
-            self.updateSeatPosition(self.constructSeatObj($('#dropzone'), ui))
+            self.updateSeatPosition(
+              self.constructSeatObj($(self.draggableConfig.containment), ui)
+            )
           }
         }
       })
